@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/adminlogin", (req, res) => {
   const sql = "SELECT * FROM admin WHERE user = ? AND password = ?";
-  con.query(sql, [req.body.username, req.body.password], (err, result) => {
+  con.query(sql, [req.body.user, req.body.password], (err, result) => {
     if (err) {
       res.status(500).send({ message: "Database query error" });
     }
