@@ -1,0 +1,67 @@
+import React from 'react'
+import './style.css'
+import { use } from 'react';
+import axios from 'axios';
+
+const Login = () => {
+    const [values, setValues] = React.useState({
+        user: '',
+        password: ''
+    });
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:3000/auth/adminlogin', values)
+            .then(result => console.log(result))
+            .catch(err => console.log(err));
+    }
+
+    return (
+        <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>
+            <div className='p-3 rounded w-25 border loginForm'>
+                <h2>Đăng Nhập</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className='mb-3'>
+                        <label htmlFor='user'><strong>Tên tài khoản:</strong></label>
+                        <input
+                            type="text"
+                            id="user"
+                            name="user"
+                            autoComplete="off"
+                            placeholder="Nhập CCCD..."
+                            className="form-control rounded-0"
+                            maxLength={12}
+                            value={values.user}
+                            onChange={(e) => {
+                                const onlyNums = e.target.value.replace(/\D/g, "");
+                                const limited = onlyNums.slice(0, 12);
+                                setValues({ ...values, user: limited });
+                            }}
+                        />
+                    </div>
+
+                    <div className='mb-3'>
+                        <label htmlFor='password'><strong>Mật khẩu:</strong></label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder='Nhập mật khẩu...'
+                            className='form-control rounded-0'
+                            onChange={(e) => setValues({...values, password: e.target.value})}
+                        />
+                    </div>
+
+                    <button className='btn btn-success w-100 rounded-0'>Đăng nhập</button>
+
+                    <div className='mb-1'>
+                        <input type="checkbox" id="checkbox" name="tick" className="me-2" />
+                        <label htmlFor='checkbox'><strong>Bạn có đồng ý điều khoản & điều kiện</strong></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+export default Login
