@@ -12,17 +12,23 @@ router.post("/adminlogin", (req, res) => {
     }
     if (result.length > 0) {
       const user = result[0].email;
-      const token = jwt.sign(
-        { role: "admin", user: user },
-        "jwt_secret_key", 
-        { expiresIn: "1d",}
-      );
+      const token = jwt.sign({ role: "admin", user: user }, "jwt_secret_key", {
+        expiresIn: "1d",
+      });
       res.cookie("token", token);
 
       res.send({ message: "Đăng nhập thành công", token });
     } else {
       res.send({ message: "Sai username hoặc password" });
     }
+  });
+});
+
+router.post("/add_department", (req, res) => {
+  const sql = "INSERT INTO department (`name`) VALUES (?)";
+  con.query(sql, [req.body.department], (err, result) => {
+    if (err) return res.json({ Status: false, Error: "Lỗi truy vấn" });
+    return res.json({ Status: true });
   });
 });
 

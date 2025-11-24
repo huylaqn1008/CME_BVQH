@@ -4,10 +4,11 @@ import Login from './components/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DashBoard from './components/DashBoard';
 import Home from './components/Home';
-import Employee from './components/Employee';
-import CME from './components/CME';
-import Profile from './components/Profile';
-import Department from './components/Department';
+import Employee from './components/Employee/Employee';
+import CME from './components/CME/CME';
+import Profile from './components/Profile/Profile';
+import Department from './components/Department/Department';
+import AddDepartment from './components/Department/AddDepartment';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />}>
           <Route index element={<Home />} />
           <Route path="department" element={<Department />} />
+          <Route path="add_department" element={<AddDepartment />} />
           <Route path="employee" element={<Employee />} />
           <Route path="CME" element={<CME />} />
           <Route path="profile" element={<Profile />} />
