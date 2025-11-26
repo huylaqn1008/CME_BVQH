@@ -9,6 +9,7 @@ import CME from './components/CME/CME';
 import Profile from './components/Profile/Profile';
 import Department from './components/Department/Department';
 import AddDepartment from './components/Department/AddDepartment';
+import AddEmployee from './components/Employee/AddEmployee';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="department" element={<Department />} />
           <Route path="add_department" element={<AddDepartment />} />
           <Route path="employee" element={<Employee />} />
+          <Route path="add_employee" element={<AddEmployee />} />
           <Route path="CME" element={<CME />} />
           <Route path="profile" element={<Profile />} />
         </Route>

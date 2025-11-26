@@ -42,14 +42,11 @@ const Login = () => {
                             id="user"
                             name="user"
                             autoComplete="off"
-                            placeholder="Nhập CCCD..."
+                            placeholder="Nhập tên tài khoản..."
                             className="form-control rounded-0"
-                            maxLength={12}
                             value={values.user}
                             onChange={(e) => {
-                                const onlyNums = e.target.value.replace(/\D/g, "");
-                                const limited = onlyNums.slice(0, 12);
-                                setValues({ ...values, user: limited });
+                                setValues({ ...values, user: e.target.value });
                             }}
                         />
                     </div>
